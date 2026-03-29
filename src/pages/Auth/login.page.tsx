@@ -34,10 +34,10 @@ export default function Login() {
   const isInvalid = !!form.formState.errors.email || !!form.formState.errors.password;
 
   return (
-    <div className="p-20 flex flex-col gap-4 h-full">
+    <div className="p-20 flex flex-col gap-4 h-full max-xl:p-10 transition-transform">
       <div className="flex flex-col items-start">
         <span className="text-secondary text-lg">Authentication</span>
-        <h2 className="text-kredix-text text-4xl">Secure Access</h2>
+        <h2 className="text-kredix-text text-4xl whitespace-nowrap">Secure Access</h2>
       </div>
       <form className="flex flex-col gap-4 my-auto" onSubmit={form.handleSubmit(handleSubmit)}>
         <div>
