@@ -8,21 +8,6 @@ type AuthState = {
     id: string;
     name: string;
     email: string;
-    account: {
-      wallet: {
-        balance: number;
-      };
-      history: {
-        transactions: Array<{
-          id: string;
-          amount: number;
-          date: string;
-          type: "credit" | "debit";
-          origin: string;
-          description?: string;
-        }>;
-      };
-    };
   } | null;
   login: (userData: { email: string; password: string }) => void;
   logout: () => void;
@@ -40,6 +25,7 @@ const useAuthStore = create<AuthState>()(
           userData.password === "123456"
         ) {
           set({ isAuthenticated: true, user: mockAuthData });
+
           return;
         }
         throw new Error("Invalid email or password");

@@ -1,23 +1,23 @@
 import LogoFull from '@/assets/logo-full.png';
 import { LogOut } from 'lucide-react';
+import { Link, useLocation } from 'react-router';
 import { cn } from '../../lib/utils';
 import useAuthStore from "../../store/auth.store";
 import { Button } from '../ui/button';
 import { Divider } from '../ui/divider';
 
 const SidebarItem = ({ label, href, active }: { label: string; href: string; active?: boolean }) => (
-  <li data-active={active} className={cn('w-full py-2 px-4 text-left', {
+  <Link to={href} data-active={active} className={cn('w-full py-2 px-4 text-left text-kredix-text hover:text-white', {
     'bg-primary/20 border-r-3 border-accent font-semibold transition-all text-accent bg-linear-90 from-primary/30 to-neutral-900 rounded-l-sm': active,
   })}>
-    <a href={href} className="text-kredix-text hover:text-white">
-      {label}
-    </a>
-  </li>
+    {label}
+  </Link>
 );
 
 export const Sidebar = () => {
   const { user, logout } = useAuthStore();
-  const activePage = window.location.pathname;
+  const path = useLocation();
+  const activePage = path.pathname;
 
   return (
     <div className="w-64 bg-neutral-800/20 h-screen p-4 border flex flex-col">
@@ -26,9 +26,9 @@ export const Sidebar = () => {
       </div>
       <Divider />
       <nav>
-        <ul className="space-y-4">
+        <ul className="space-y-4 flex flex-col">
           <SidebarItem label="Dashboard" href="/" active={activePage === '/'} />
-          <SidebarItem label="Profile" href="/profile" active={activePage === '/profile'} />
+          <SidebarItem label="Transfer" href="/transfer" active={activePage === '/transfer'} />
         </ul>
       </nav>
       <section className="mt-auto pt-4 border-neutral-700 flex flex-col gap-4">
