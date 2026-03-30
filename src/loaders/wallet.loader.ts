@@ -14,7 +14,7 @@ export const walletLoader = async () => {
   try {
     const data = mockAuthData.account;
 
-    useWalletStore().reset();
+    useWalletStore.getState().reset();
     return data;
   } catch (error) {
     console.error("Failed to load wallet data:", error);

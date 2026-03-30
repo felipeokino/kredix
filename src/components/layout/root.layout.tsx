@@ -6,7 +6,7 @@ import { Toaster } from '../ui/sonner';
 import { TooltipProvider } from '../ui/tooltip';
 
 export const RootLayout = () => {
-  const { user, isAuthenticated } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
   if (!isAuthenticated) {
