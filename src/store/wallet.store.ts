@@ -21,43 +21,52 @@ const useWalletStore = create<WalletDetail>()(
         }));
       },
 
-      transfer: (amount, recipient) => {
-        set((state) => {
-          // Early return garante que o TypeScript saiba que state.account não é null daqui para baixo
-          if (!state.account) return state;
+      transfer: async (amount, recipient) => {
+        return new Promise<void>((resolve, reject) => {
+          setTimeout(() => {
+            try {
+              // Lógica de transferência simulada
+              set((state) => {
+                if (!state.account) {
+                  throw new Error("No account found");
+                }
 
-          const newBalance = state.account.wallet.balance - amount;
+                const newBalance = state.account.wallet.balance - amount;
 
-          if (newBalance < 0) {
-            // Dica arquitetural: Lançar um erro aqui pode quebrar a renderização se não for tratado na UI.
-            // Pode ser interessante retornar o state intacto e lidar com o erro no componente,
-            // ou ter um estado de erro global/toast.
-            throw new Error("Insufficient funds");
-          }
+                if (newBalance < 0) {
+                  throw new Error("Insufficient funds");
+                }
 
-          return {
-            account: {
-              ...state.account,
-              wallet: {
-                ...state.account.wallet,
-                balance: newBalance,
-              },
-              history: {
-                ...state.account.history,
-                transactions: [
-                  ...state.account.history.transactions,
-                  {
-                    id: `txn${Date.now()}`,
-                    amount,
-                    date: new Date().toISOString(),
-                    type: "debit",
-                    origin: recipient,
-                    description: `Transfer to ${recipient}`,
+                return {
+                  account: {
+                    ...state.account,
+                    wallet: {
+                      ...state.account.wallet,
+                      balance: newBalance,
+                    },
+                    history: {
+                      ...state.account.history,
+                      transactions: [
+                        ...state.account.history.transactions,
+                        {
+                          id: `txn${Date.now()}`,
+                          amount,
+                          date: new Date().toISOString(),
+                          type: "debit",
+                          origin: recipient,
+                          description: `Transfer to ${recipient}`,
+                        },
+                      ],
+                    },
                   },
-                ],
-              },
-            },
-          };
+                };
+              });
+              get().refresh();
+              resolve();
+            } catch (error) {
+              reject(error);
+            }
+          }, 1000);
         });
       },
       getBalance: () => {

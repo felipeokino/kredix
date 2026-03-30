@@ -1,15 +1,16 @@
 import LogoFull from '@/assets/logo-full.png';
-import { LogOut } from 'lucide-react';
+import { LayoutDashboard, LogOut, TrashIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router';
 import { cn } from '../../lib/utils';
 import useAuthStore from "../../store/auth.store";
 import { Button } from '../ui/button';
 import { Divider } from '../ui/divider';
 
-const SidebarItem = ({ label, href, active }: { label: string; href: string; active?: boolean }) => (
-  <Link to={href} data-active={active} className={cn('w-full py-2 px-4 text-left text-kredix-text hover:text-white', {
+const SidebarItem = ({ label, href, active, icon: Icon }: { label: string; href: string; active?: boolean; icon?: React.ComponentType }) => (
+  <Link to={href} data-active={active} className={cn('w-full py-2 px-4 text-left text-kredix-text hover:text-white flex gap-2', {
     'bg-primary/20 border-r-3 border-accent font-semibold transition-all text-accent bg-linear-90 from-primary/30 to-neutral-900 rounded-l-sm': active,
   })}>
+    {Icon && <Icon  />}
     {label}
   </Link>
 );
@@ -27,8 +28,8 @@ export const Sidebar = () => {
       <Divider />
       <nav>
         <ul className="space-y-4 flex flex-col">
-          <SidebarItem label="Dashboard" href="/" active={activePage === '/'} />
-          <SidebarItem label="Transfer" href="/transfer" active={activePage === '/transfer'} />
+          <SidebarItem label="Dashboard" href="/" active={activePage === '/'} icon={LayoutDashboard} />
+          <SidebarItem label="Transfer" href="/transfer" active={activePage === '/transfer'} icon={TrashIcon} />
         </ul>
       </nav>
       <section className="mt-auto pt-4 border-neutral-700 flex flex-col gap-4">

@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router";
 import useAuthStore from "../../store/auth.store";
 import { Sidebar } from "../custom/sidebar";
 import { Button } from "../ui/button";
+import { Toaster } from '../ui/sonner';
 
 export const RootLayout = () => {
   const { user, isAuthenticated } = useAuthStore();
@@ -22,6 +23,7 @@ export const RootLayout = () => {
       <div className="flex-1 p-6">
         <Outlet />
       </div>
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 

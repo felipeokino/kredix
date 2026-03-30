@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import AuthLayout from "../components/layout/auth.layout";
-import { RootLayout } from "../components/layout/Root.layout";
+import { RootLayout } from "../components/layout/root.layout";
 import { walletLoader } from "../loaders/wallet.loader";
 import Login from "../pages/Auth/login.page";
 import Home from "../pages/Home/home.page";
