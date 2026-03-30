@@ -14,7 +14,7 @@ export default function AuthLayout() {
   }, [isAuthenticated, navigate])
 
   return (
-    <div className="grid grid-cols-3 max-md:grid-cols-1 h-screen">
+    <div className="grid grid-cols-3 max-md:grid-cols-1 h-dvh">
       <div className="col-span-2 bg-neutral-600 max-md:hidden flex items-center justify-center max-h-screen relative">
         <div className='absolute bottom-0 left-0 w-full h-full backdrop-blur-sm backdrop-brightness-50'></div>
         <img src={vault} alt="Vault" className='object-cover w-full h-full' />
