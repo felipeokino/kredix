@@ -453,35 +453,8 @@ function Home() {
 
 ### 7. Pipeline CI/CD
 
-**Atual**: Builds manuais
-**Futuro**:
-
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: pnpm install
-      - run: pnpm test
-      - run: pnpm build
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: pnpm build
-      - name: Deploy para Vercel
-        uses: amondnet/vercel-action@v25
-```
+**Atual**: Builds git Based na Vercel
+**Futuro**: Evetualmente um yaml para deploy na AWS ou outra cloud.
 
 ### 8. Melhorias em Testes
 
@@ -518,3 +491,5 @@ Este projeto é para fins de demonstração como parte de um desafio técnico.
 ## Suporte
 
 Para dúvidas ou questões relacionadas à implementação deste desafio técnico, por favor refira-se à documentação original do projeto ou entre em contato com a equipe contratante.
+
+https://kredix.vercel.app
