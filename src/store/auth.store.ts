@@ -18,17 +18,21 @@ const useAuthStore = create<AuthState>()(
     (set) => ({
       isAuthenticated: false,
       user: null,
-      login: (userData) => {
+      login: async (userData) => {
         // Fake API call - in a real app, you'd make an API request here
-        if (
+        return new Promise<void>((resolve, reject) => {
+          setTimeout(() => {
+            if (
           userData.email === "felipe.o@example.com" &&
           userData.password === "123456"
         ) {
           set({ isAuthenticated: true, user: mockAuthData });
-
-          return;
+          resolve();
+        } else {
+          reject(new Error("Invalid email or password"));
         }
-        throw new Error("Invalid email or password");
+          }, 1000);
+        });
       },
       logout: () => {
         set({ isAuthenticated: false, user: null });

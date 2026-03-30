@@ -21,7 +21,6 @@ Aplicação desenvolvida como desafio técnico para uma empresa fintech. O Kredi
 ```
 src/
 ├── __tests__/              # Arquivos de teste
-│   ├── hooks/              # Testes de hooks
 │   ├── stores/             # Testes de gerenciamento de estado
 │   ├── utils/              # Testes de funções utilitárias
 │   └── components/         # Testes de componentes
@@ -75,6 +74,14 @@ pnpm test:coverage
 
 Nenhuma variável de ambiente é necessária para desenvolvimento. O aplicativo utiliza dados mockados para fins de teste.
 
+### Variáveis de Ambiente
+Usuário para teste
+```json
+{
+  "email": "felipe.o@example.com",
+  "password": "123456"
+}
+```
 ---
 
 ## Estratégia de Testes
@@ -393,11 +400,10 @@ interface AuthState {
 **Atual**: Single bundle, code splitting básico
 **Futuro**:
 
-- [ ] Code splitting baseado em rotas
+- [x] Code splitting baseado em rotas
 - [ ] Lazy loading para componentes pesados (gráficos, histórico)
 - [ ] Virtual scrolling para listas de transações
 - [ ] Otimização de imagens (WebP, lazy loading)
-- [ ] Service Worker para suporte offline
 
 ```typescript
 // Exemplo: Lazy load componente
