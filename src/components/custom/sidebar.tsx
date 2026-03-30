@@ -1,5 +1,5 @@
 import LogoFull from '@/assets/logo-full.png';
-import { LayoutDashboard, LogOut, Menu, TrashIcon } from 'lucide-react';
+import { LayoutDashboard, LogOut, Menu, Settings } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { cn } from '../../lib/utils';
@@ -17,7 +17,7 @@ const SidebarItem = ({ label, href, active, icon: Icon, ...props }: SidebarItemP
   <Link {...props} to={href || '#'} data-active={active} className={cn('w-full py-2 px-4 text-left text-kredix-text hover:text-white flex gap-2', {
     'bg-primary/20 border-r-3 border-accent font-semibold transition-all text-accent bg-linear-90 from-primary/30 to-neutral-900 rounded-l-sm': active,
   })} >
-    {Icon && <Icon  />}
+    {Icon && <Icon />}
     {label}
   </Link>
 );
@@ -27,7 +27,7 @@ export const Sidebar = () => {
   const path = useLocation();
   const activePage = path.pathname;
   const [drawerOpen, setDrawerOpen] = useState(false);
-  
+
   const handleNavigation = () => {
     setDrawerOpen(false);
   }
@@ -40,19 +40,19 @@ export const Sidebar = () => {
       <Divider />
       <nav>
         <ul className="space-y-4 flex flex-col">
-          <SidebarItem 
-            label="Dashboard" 
-            href="/" 
-            active={activePage === '/'} 
-            icon={LayoutDashboard} 
-            onClick={isMobile ? handleNavigation : undefined} 
+          <SidebarItem
+            label="Dashboard"
+            href="/"
+            active={activePage === '/'}
+            icon={LayoutDashboard}
+            onClick={isMobile ? handleNavigation : undefined}
           />
-          <SidebarItem 
-            label="Admin" 
-            href="/admin" 
-            active={activePage === '/admin'} 
-            icon={TrashIcon} 
-            onClick={isMobile ? handleNavigation : undefined} 
+          <SidebarItem
+            label="Admin"
+            href="/admin"
+            active={activePage === '/admin'}
+            icon={Settings}
+            onClick={isMobile ? handleNavigation : undefined}
           />
         </ul>
       </nav>
@@ -86,7 +86,7 @@ export const Sidebar = () => {
             <SidebarContent isMobile />
           </DrawerContent>
         </Drawer>
-        
+
       </div>
     </>
   );
