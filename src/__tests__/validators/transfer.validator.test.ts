@@ -8,7 +8,7 @@ const transferSchema = z.object({
     .max(1000000, "Amount exceeds maximum limit"),
   recipient: z.string()
     .min(5, "Recipient identifier too short")
-    .regex(/^[^<>\"&]+$/, "Invalid characters detected"),
+    .regex(/^[^<>"&]+$/, "Invalid characters detected"),
 });
 
 describe("Transfer Validator", () => {
@@ -34,7 +34,7 @@ describe("Transfer Validator", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        expect(result.error.issues.some((i: any) => i.path.includes("amount"))).toBe(true);
+        expect(result.error.issues.some((i) => i.path.includes("amount"))).toBe(true);
       }
     });
 
@@ -46,7 +46,7 @@ describe("Transfer Validator", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        expect(result.error.issues.some((i: any) => i.path.includes("amount"))).toBe(true);
+        expect(result.error.issues.some((i) => i.path.includes("amount"))).toBe(true);
       }
     });
 
@@ -79,7 +79,7 @@ describe("Transfer Validator", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        expect(result.error.issues.some((i: any) => i.path.includes("recipient"))).toBe(true);
+        expect(result.error.issues.some((i) => i.path.includes("recipient"))).toBe(true);
       }
     });
 

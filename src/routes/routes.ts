@@ -1,11 +1,11 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from "react-router";
 import AuthLayout from "../components/layout/auth.layout";
 import { RootLayout } from "../components/layout/root.layout";
 import { walletLoader } from "../loaders/wallet.loader";
-import Login from "../pages/Auth/login.page";
-import Home from "../pages/Home/home.page";
-import Admin from "../pages/Admin/admin.page";
-
+const Login = lazy(() => import('@/pages/Auth/login.page'));
+const Home = lazy(() => import('@/pages/Home/home.page'))
+const Admin = lazy(() => import('@/pages/Admin/admin.page'))
 export const router = createBrowserRouter([
   {
     path: "login",
