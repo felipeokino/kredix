@@ -12,10 +12,9 @@ export const walletLoader = async () => {
   }
 
   try {
-    // Call API to fetch wallet data
     const data = mockAuthData.account;
 
-    useWalletStore.setState({ account: data });
+    useWalletStore().reset();
     return data;
   } catch (error) {
     console.error("Failed to load wallet data:", error);

@@ -3,6 +3,7 @@ import useAuthStore from "../../store/auth.store";
 import { Sidebar } from "../custom/sidebar";
 import { Button } from "../ui/button";
 import { Toaster } from '../ui/sonner';
+import { TooltipProvider } from '../ui/tooltip';
 
 export const RootLayout = () => {
   const { user, isAuthenticated } = useAuthStore();
@@ -18,10 +19,12 @@ export const RootLayout = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex max-lg:flex-col h-screen">
       <Sidebar />
       <div className="flex-1 p-6">
-        <Outlet />
+        <TooltipProvider>
+          <Outlet />
+        </TooltipProvider>
       </div>
       <Toaster position="bottom-right" richColors />
     </div>

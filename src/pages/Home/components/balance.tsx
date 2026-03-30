@@ -4,7 +4,7 @@ import { formatCurrency } from '../../../utils/number';
 
 export const Balance = () => {
   const { getBalance } = useWalletStore();
-
+  
   const { data: balance } = useQuery({
     queryKey: ['balance'],
     queryFn: () => getBalance(),
@@ -15,7 +15,7 @@ export const Balance = () => {
       <span className="text-sm text-kredix-text font-semibold mb-4 uppercase">Current Balance</span>
       <p className="text-kredix-text">
         R$
-        <span className="text-[70px] text-kredix-text font-semibold mb-4">{formatCurrency(balance ?? 0)}</span>
+        <span className="text-[70px] max-sm:text-[60px] text-kredix-text font-semibold mb-4">{formatCurrency(balance ?? 0)}</span>
       </p>
     </div>
   );

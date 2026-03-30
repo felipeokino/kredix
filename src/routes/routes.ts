@@ -4,7 +4,7 @@ import { RootLayout } from "../components/layout/root.layout";
 import { walletLoader } from "../loaders/wallet.loader";
 import Login from "../pages/Auth/login.page";
 import Home from "../pages/Home/home.page";
-import Transfer from "../pages/Transfer/transfer.page";
+import Admin from "../pages/Admin/admin.page";
 
 export const router = createBrowserRouter([
   {
@@ -21,8 +21,8 @@ export const router = createBrowserRouter([
     path: "/",
     Component: RootLayout,
     children: [
-      { index: true, Component: Home },
-      { path: "transfer", Component: Transfer, loader: walletLoader },
+      { index: true, Component: Home, loader: walletLoader },
+      { path: "admin", Component: Admin, loader: walletLoader },
     ],
   },
 ]);

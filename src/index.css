@@ -10,6 +10,7 @@
   --color-kredix-text: #B0BEC5;
   --color-primary: #6200EA;
   --color-secondary: #7C4DFF;
+  --breakpoint-lg: 1300px;
 }
 
 :root {

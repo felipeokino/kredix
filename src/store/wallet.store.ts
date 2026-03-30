@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Account } from "../types/user";
+import { mockAuthData, transactionsMock } from '../data/auth.mock';
+import { sortTransactionsByDate } from '../utils/utils';
 
 // 1. Tipagem atualizada para permitir o estado inicial null
 type WalletDetail = {
@@ -8,6 +10,7 @@ type WalletDetail = {
   refresh: () => void;
   transfer: (amount: number, recipient: string) => void;
   getBalance: () => number;
+  reset: () => void;
 };
 
 const useWalletStore = create<WalletDetail>()(
@@ -19,6 +22,24 @@ const useWalletStore = create<WalletDetail>()(
         set((state) => ({
           account: state.account,
         }));
+      },
+      reset: () => {
+        const totalBalance = transactionsMock.reduce((acc, txn) => {
+          return txn.type === "income" ? acc + txn.amount : acc - txn.amount;
+        }, 0);
+        set(() => ({
+          account: {
+            ...mockAuthData.account,
+            wallet: {
+              ...mockAuthData.account.wallet,
+              balance: totalBalance,
+            },
+            history: {
+              transactions: sortTransactionsByDate(transactionsMock),
+            },
+          },
+        }));
+        
       },
 
       transfer: async (amount, recipient) => {

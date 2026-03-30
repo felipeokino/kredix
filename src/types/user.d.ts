@@ -8,7 +8,7 @@ export type Transaction = {
   id: string;
   amount: number;
   date: string;
-  type: "credit" | "debit";
+  type: "income" | "expense";
   origin: string;
   description?: string;
 };

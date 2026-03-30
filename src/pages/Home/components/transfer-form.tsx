@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import { Loading } from '../../../components/custom/loading';
 import { currencyMask } from '../../../utils/masks';
 import queryClient from '../../../utils/query';
-export const TransferForm = () => {
+export const TransferForm = ({ callback }: { callback?: () => void }) => {
   const form = useForm({
     defaultValues: {
       recipient: '',
@@ -28,6 +28,9 @@ export const TransferForm = () => {
       form.reset();
       toast.success('Transfer successful');
       queryClient.invalidateQueries({ queryKey: ['balance'] });
+      if (callback) {
+        callback();
+      }
     },
     onError: (error) => {
       toast.error(`Transfer failed: ${error.message}`);
@@ -39,7 +42,6 @@ export const TransferForm = () => {
 
   return (
     <div className="w-full">
-      <h1 className="text-kredix-text text-2xl font-semibold mb-4 text-left">Transfer Funds</h1>
       <form className="flex flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
         <FieldGroup>
           <FieldSet>
