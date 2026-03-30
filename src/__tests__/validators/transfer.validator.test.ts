@@ -98,13 +98,13 @@ describe("Transfer Validator", () => {
         { value: '&', name: "ampersand" },
       ];
 
-      for (const { value, name } of invalidChars) {
+      for (const { value } of invalidChars) {
         const result = transferSchema.safeParse({
           amount: 100,
           recipient: value,
         });
 
-        expect(result.success).toBe(false, `Should reject ${name}`);
+        expect(result.success).toBe(false);
       }
     });
 
@@ -118,7 +118,6 @@ describe("Transfer Validator", () => {
     });
 
     it("should reject string amount instead of number", () => {
-      // @ts-expect-error Testing invalid type
       const result = transferSchema.safeParse({
         amount: "100",
         recipient: "user@example.com",

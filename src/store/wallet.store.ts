@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Account } from "../types/user";
 import { mockAuthData, transactionsMock } from '../data/auth.mock';
+import type { Account } from "../types/user";
 import { sortTransactionsByDate } from '../utils/utils';
 
 // 1. Tipagem atualizada para permitir o estado inicial null
@@ -73,7 +73,7 @@ const useWalletStore = create<WalletDetail>()(
                           id: `txn${Date.now()}`,
                           amount,
                           date: new Date().toISOString(),
-                          type: "debit",
+                          type: "expense",
                           origin: recipient,
                           description: `Transfer to ${recipient}`,
                         },

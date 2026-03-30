@@ -46,7 +46,7 @@ export default function Login() {
         <FieldGroup>
           <FieldSet>
             <Field>
-              <FieldLabel className="text-kredix-text" required>Email</FieldLabel>
+              <FieldLabel className="text-kredix-text">Email</FieldLabel>
               <Input type="email" placeholder="email@example.com" aria-invalid={!!form.formState.errors.email} {...form.register("email")} />
             </Field>
           </FieldSet>
@@ -54,7 +54,7 @@ export default function Login() {
         <FieldGroup>
           <FieldSet>
             <Field>
-              <FieldLabel className="text-kredix-text" required>Password</FieldLabel>
+              <FieldLabel className="text-kredix-text">Password</FieldLabel>
               <Input type="password" placeholder="Type your password" aria-invalid={!!form.formState.errors.password} {...form.register("password")} />
             </Field>
           </FieldSet>
